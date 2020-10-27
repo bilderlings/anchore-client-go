@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ImageDigest** | **string** |  | [optional] 
+**Content** | **[]map[string]interface{}** |  | [optional] 
 **ContentType** | **string** |  | [optional] 
-**Content** | [**[]map[string]interface{}**](map[string]interface{}.md) |  | [optional] 
+**ImageDigest** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

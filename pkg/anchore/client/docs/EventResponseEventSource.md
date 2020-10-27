@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Servicename** | **string** |  | [optional] 
-**Hostid** | **string** |  | [optional] 
 **BaseUrl** | **string** |  | [optional] 
+**Hostid** | **string** |  | [optional] 
 **RequestId** | **string** |  | [optional] 
+**Servicename** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

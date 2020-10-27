@@ -3,7 +3,7 @@
  *
  * This is the Anchore Engine API. Provides the primary external API for users of the service.
  *
- * API version: 0.1.14
+ * API version: 0.1.15
  * Contact: nurmi@anchore.com
  */
 
@@ -19,8 +19,11 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
+	"log"
 	"mime/multipart"
 	"net/http"
+	"net/http/httputil"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -39,7 +42,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Anchore Engine API Server API v0.1.14
+// APIClient manages communication with the Anchore Engine API Server API v0.1.15
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -47,7 +50,43 @@ type APIClient struct {
 
 	// API Services
 
+	ArchivesApi *ArchivesApiService
+
 	DefaultApi *DefaultApiService
+
+	EventsApi *EventsApiService
+
+	IdentityApi *IdentityApiService
+
+	ImageContentApi *ImageContentApiService
+
+	ImagesApi *ImagesApiService
+
+	ImportApi *ImportApiService
+
+	PoliciesApi *PoliciesApiService
+
+	PolicyApi *PolicyApiService
+
+	PolicyEvaluationApi *PolicyEvaluationApiService
+
+	QueriesApi *QueriesApiService
+
+	RegistriesApi *RegistriesApiService
+
+	RepositoryCredentialsApi *RepositoryCredentialsApiService
+
+	ServicesApi *ServicesApiService
+
+	SubscriptionsApi *SubscriptionsApiService
+
+	SummariesApi *SummariesApiService
+
+	SystemApi *SystemApiService
+
+	UserManagementApi *UserManagementApiService
+
+	VulnerabilitiesApi *VulnerabilitiesApiService
 }
 
 type service struct {
@@ -66,7 +105,25 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.ArchivesApi = (*ArchivesApiService)(&c.common)
 	c.DefaultApi = (*DefaultApiService)(&c.common)
+	c.EventsApi = (*EventsApiService)(&c.common)
+	c.IdentityApi = (*IdentityApiService)(&c.common)
+	c.ImageContentApi = (*ImageContentApiService)(&c.common)
+	c.ImagesApi = (*ImagesApiService)(&c.common)
+	c.ImportApi = (*ImportApiService)(&c.common)
+	c.PoliciesApi = (*PoliciesApiService)(&c.common)
+	c.PolicyApi = (*PolicyApiService)(&c.common)
+	c.PolicyEvaluationApi = (*PolicyEvaluationApiService)(&c.common)
+	c.QueriesApi = (*QueriesApiService)(&c.common)
+	c.RegistriesApi = (*RegistriesApiService)(&c.common)
+	c.RepositoryCredentialsApi = (*RepositoryCredentialsApiService)(&c.common)
+	c.ServicesApi = (*ServicesApiService)(&c.common)
+	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
+	c.SummariesApi = (*SummariesApiService)(&c.common)
+	c.SystemApi = (*SystemApiService)(&c.common)
+	c.UserManagementApi = (*UserManagementApiService)(&c.common)
+	c.VulnerabilitiesApi = (*VulnerabilitiesApiService)(&c.common)
 
 	return c
 }
@@ -156,14 +213,42 @@ func parameterToJson(obj interface{}) (string, error) {
 	return string(jsonBuf), err
 }
 
+
 // callAPI do the request.
 func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
-	return c.cfg.HTTPClient.Do(request)
+	if c.cfg.Debug {
+	        dump, err := httputil.DumpRequestOut(request, true)
+		if err != nil {
+		        return nil, err
+		}
+		log.Printf("\n%s\n", string(dump))
+	}
+
+	resp, err := c.cfg.HTTPClient.Do(request)
+	if err != nil {
+		return resp, err
+	}
+
+	if c.cfg.Debug {
+		dump, err := httputil.DumpResponse(resp, true)
+		if err != nil {
+			return resp, err
+		}
+		log.Printf("\n%s\n", string(dump))
+	}
+
+	return resp, err
 }
 
 // ChangeBasePath changes base path to allow switching to mocks
 func (c *APIClient) ChangeBasePath(path string) {
 	c.cfg.BasePath = path
+}
+
+// Allow modification of underlying config for alternate implementations and testing
+// Caution: modifying the configuration while live can cause data races and potentially unwanted behavior
+func (c *APIClient) GetConfig() *Configuration {
+	return c.cfg
 }
 
 // prepareRequest build the request
@@ -320,6 +405,7 @@ func (c *APIClient) prepareRequest(
 		if auth, ok := ctx.Value(ContextAccessToken).(string); ok {
 			localVarRequest.Header.Add("Authorization", "Bearer "+auth)
 		}
+
 	}
 
 	for header, value := range c.cfg.DefaultHeader {
@@ -330,9 +416,21 @@ func (c *APIClient) prepareRequest(
 }
 
 func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
+	if len(b) == 0 {
+		return nil
+	}
 	if s, ok := v.(*string); ok {
 		*s = string(b)
 		return nil
+	}
+	if f, ok := v.(**os.File); ok {
+		*f, err = ioutil.TempFile("", "HttpClientFile")
+		if err != nil {
+			return
+		}
+		_, err = (*f).Write(b)
+		_, err = (*f).Seek(0, io.SeekStart)
+		return
 	}
 	if xmlCheck.MatchString(contentType) {
 		if err = xml.Unmarshal(b, v); err != nil {

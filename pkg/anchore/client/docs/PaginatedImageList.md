@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Page** | **string** | The page number returned (should match the requested page query string param) | [optional] 
 **NextPage** | **string** | True if additional pages exist (page + 1) or False if this is the last page | [optional] 
+**Page** | **string** | The page number returned (should match the requested page query string param) | [optional] 
 **ReturnedCount** | **int32** | The number of items sent in this response | [optional] 
 **Images** | [**[]ImageWithPackages**](ImageWithPackages.md) |  | [optional] 
 

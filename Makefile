@@ -12,8 +12,8 @@ ifeq (${VERBOSE}, 1)
 	GOARGS += -v
 endif
 
-OPENAPI_GENERATOR_VERSION = v4.1.3
-GOLANG_VERSION = 1.13
+OPENAPI_GENERATOR_VERSION = v4.3.1
+GOLANG_VERSION = 1.15
 
 .PHONY: clean
 clean: ## Clean the working area and the project
@@ -43,14 +43,17 @@ ifneq (${IGNORE_GOLANG_VERSION_REQ}, 1)
 endif
 
 define generate_openapi_client
-	@ if [[ "$$OSTYPE" == "linux-gnu" ]]; then sudo rm -rf ${3}; else rm -rf ${3}; fi
+	sudo rm -rf ${3}
 	docker run --rm -v $${PWD}:/local openapitools/openapi-generator-cli:${OPENAPI_GENERATOR_VERSION} generate \
 	--additional-properties packageName=${2} \
 	--additional-properties withGoCodegenComment=true \
 	-i /local/${1} \
 	-g go \
 	-o /local/${3}
-	@ if [[ "$$OSTYPE" == "linux-gnu" ]]; then sudo chown -R $(shell id -u):$(shell id -g) ${3}; fi
+	sudo chown -R $$USER:$$USER ${3}
+	sed -i -- 's/ AnalysisArchiveSource/ *AnalysisArchiveSource/' ${3}/model_image_source.go
+	sed -i -- 's/ RegistryDigestSource/ *RegistryDigestSource/' ${3}/model_image_source.go
+	sed -i -- 's/ RegistryTagSource/ *RegistryTagSource/' ${3}/model_image_source.go
 	rm ${3}/{.travis.yml,git_push.sh,go.*}
 endef
 
