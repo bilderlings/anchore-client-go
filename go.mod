@@ -1,4 +1,4 @@
-module github.com/anchore/client-go
+module github.com/bilderlings/client-go
 
 go 1.15
 
