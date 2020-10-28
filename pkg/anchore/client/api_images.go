@@ -13,11 +13,11 @@ package client
 
 import (
 	_context "context"
+	"github.com/antihax/optional"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -30,9 +30,9 @@ type ImagesApiService service
 
 // AddImageOpts Optional parameters for the method 'AddImage'
 type AddImageOpts struct {
-    Force optional.Bool
-    Autosubscribe optional.Bool
-    XAnchoreAccount optional.String
+	Force           optional.Bool
+	Autosubscribe   optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -137,8 +137,8 @@ func (a *ImagesApiService) AddImage(ctx _context.Context, image ImageAnalysisReq
 
 // DeleteImageOpts Optional parameters for the method 'DeleteImage'
 type DeleteImageOpts struct {
-    Force optional.Bool
-    XAnchoreAccount optional.String
+	Force           optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -146,7 +146,7 @@ DeleteImage Delete an image analysis
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param imageDigest
  * @param optional nil or *DeleteImageOpts - Optional Parameters:
- * @param "Force" (optional.Bool) - 
+ * @param "Force" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return DeleteImageResponse
 */
@@ -162,7 +162,7 @@ func (a *ImagesApiService) DeleteImage(ctx _context.Context, imageDigest string,
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -229,8 +229,8 @@ func (a *ImagesApiService) DeleteImage(ctx _context.Context, imageDigest string,
 
 // DeleteImageByImageIdOpts Optional parameters for the method 'DeleteImageByImageId'
 type DeleteImageByImageIdOpts struct {
-    Force optional.Bool
-    XAnchoreAccount optional.String
+	Force           optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -238,7 +238,7 @@ DeleteImageByImageId Delete image by docker imageId
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param imageId
  * @param optional nil or *DeleteImageByImageIdOpts - Optional Parameters:
- * @param "Force" (optional.Bool) - 
+ * @param "Force" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return DeleteImageResponse
 */
@@ -254,7 +254,7 @@ func (a *ImagesApiService) DeleteImageByImageId(ctx _context.Context, imageId st
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -330,8 +330,8 @@ func (a *ImagesApiService) DeleteImageByImageId(ctx _context.Context, imageId st
 
 // DeleteImagesAsyncOpts Optional parameters for the method 'DeleteImagesAsync'
 type DeleteImagesAsyncOpts struct {
-    Force optional.Bool
-    XAnchoreAccount optional.String
+	Force           optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -340,7 +340,7 @@ Delete analysis for image digests in the list asynchronously
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param imageDigests
  * @param optional nil or *DeleteImagesAsyncOpts - Optional Parameters:
- * @param "Force" (optional.Bool) - 
+ * @param "Force" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return []DeleteImageResponse
 */
@@ -431,7 +431,7 @@ func (a *ImagesApiService) DeleteImagesAsync(ctx _context.Context, imageDigests 
 
 // GetImageOpts Optional parameters for the method 'GetImage'
 type GetImageOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -454,7 +454,7 @@ func (a *ImagesApiService) GetImage(ctx _context.Context, imageDigest string, lo
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -527,7 +527,7 @@ func (a *ImagesApiService) GetImage(ctx _context.Context, imageDigest string, lo
 
 // GetImageByImageIdOpts Optional parameters for the method 'GetImageByImageId'
 type GetImageByImageIdOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -550,7 +550,7 @@ func (a *ImagesApiService) GetImageByImageId(ctx _context.Context, imageId strin
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -619,11 +619,6 @@ func (a *ImagesApiService) GetImageByImageId(ctx _context.Context, imageId strin
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageContentByTypeOpts Optional parameters for the method 'GetImageContentByType'
-type GetImageContentByTypeOpts struct {
-    XAnchoreAccount optional.String
 }
 
 /*
@@ -647,9 +642,9 @@ func (a *ImagesApiService) GetImageContentByType(ctx _context.Context, imageDige
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/content/{ctype}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"ctype"+"}", _neturl.QueryEscape(parameterToString(ctype, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"ctype"+"}", _neturl.QueryEscape(parameterToString(ctype, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -718,11 +713,6 @@ func (a *ImagesApiService) GetImageContentByType(ctx _context.Context, imageDige
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageContentByTypeFilesOpts Optional parameters for the method 'GetImageContentByTypeFiles'
-type GetImageContentByTypeFilesOpts struct {
-    XAnchoreAccount optional.String
 }
 
 /*
@@ -745,7 +735,7 @@ func (a *ImagesApiService) GetImageContentByTypeFiles(ctx _context.Context, imag
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/content/files"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -814,11 +804,6 @@ func (a *ImagesApiService) GetImageContentByTypeFiles(ctx _context.Context, imag
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageContentByTypeImageIdOpts Optional parameters for the method 'GetImageContentByTypeImageId'
-type GetImageContentByTypeImageIdOpts struct {
-    XAnchoreAccount optional.String
 }
 
 /*
@@ -842,9 +827,9 @@ func (a *ImagesApiService) GetImageContentByTypeImageId(ctx _context.Context, im
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}/content/{ctype}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"ctype"+"}", _neturl.QueryEscape(parameterToString(ctype, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"ctype"+"}", _neturl.QueryEscape(parameterToString(ctype, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -913,11 +898,6 @@ func (a *ImagesApiService) GetImageContentByTypeImageId(ctx _context.Context, im
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageContentByTypeImageIdFilesOpts Optional parameters for the method 'GetImageContentByTypeImageIdFiles'
-type GetImageContentByTypeImageIdFilesOpts struct {
-    XAnchoreAccount optional.String
 }
 
 /*
@@ -940,7 +920,7 @@ func (a *ImagesApiService) GetImageContentByTypeImageIdFiles(ctx _context.Contex
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}/content/files"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1009,11 +989,6 @@ func (a *ImagesApiService) GetImageContentByTypeImageIdFiles(ctx _context.Contex
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageContentByTypeImageIdJavapackageOpts Optional parameters for the method 'GetImageContentByTypeImageIdJavapackage'
-type GetImageContentByTypeImageIdJavapackageOpts struct {
-    XAnchoreAccount optional.String
 }
 
 /*
@@ -1036,7 +1011,7 @@ func (a *ImagesApiService) GetImageContentByTypeImageIdJavapackage(ctx _context.
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}/content/java"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1105,11 +1080,6 @@ func (a *ImagesApiService) GetImageContentByTypeImageIdJavapackage(ctx _context.
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageContentByTypeJavapackageOpts Optional parameters for the method 'GetImageContentByTypeJavapackage'
-type GetImageContentByTypeJavapackageOpts struct {
-    XAnchoreAccount optional.String
 }
 
 /*
@@ -1132,7 +1102,7 @@ func (a *ImagesApiService) GetImageContentByTypeJavapackage(ctx _context.Context
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/content/java"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1203,11 +1173,6 @@ func (a *ImagesApiService) GetImageContentByTypeJavapackage(ctx _context.Context
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetImageContentByTypeMalwareOpts Optional parameters for the method 'GetImageContentByTypeMalware'
-type GetImageContentByTypeMalwareOpts struct {
-    XAnchoreAccount optional.String
-}
-
 /*
 GetImageContentByTypeMalware Get the content of an image by type malware
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1228,7 +1193,7 @@ func (a *ImagesApiService) GetImageContentByTypeMalware(ctx _context.Context, im
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/content/malware"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1301,7 +1266,7 @@ func (a *ImagesApiService) GetImageContentByTypeMalware(ctx _context.Context, im
 
 // GetImageMetadataByTypeOpts Optional parameters for the method 'GetImageMetadataByType'
 type GetImageMetadataByTypeOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -1325,9 +1290,9 @@ func (a *ImagesApiService) GetImageMetadataByType(ctx _context.Context, imageDig
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/metadata/{mtype}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"mtype"+"}", _neturl.QueryEscape(parameterToString(mtype, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mtype"+"}", _neturl.QueryEscape(parameterToString(mtype, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1398,15 +1363,6 @@ func (a *ImagesApiService) GetImageMetadataByType(ctx _context.Context, imageDig
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetImagePolicyCheckOpts Optional parameters for the method 'GetImagePolicyCheck'
-type GetImagePolicyCheckOpts struct {
-    PolicyId optional.String
-    Detail optional.Bool
-    History optional.Bool
-    Interactive optional.Bool
-    XAnchoreAccount optional.String
-}
-
 /*
 GetImagePolicyCheck Check policy evaluation status for image
 Get the policy evaluation for the given image
@@ -1414,10 +1370,10 @@ Get the policy evaluation for the given image
  * @param imageDigest
  * @param tag
  * @param optional nil or *GetImagePolicyCheckOpts - Optional Parameters:
- * @param "PolicyId" (optional.String) - 
- * @param "Detail" (optional.Bool) - 
- * @param "History" (optional.Bool) - 
- * @param "Interactive" (optional.Bool) - 
+ * @param "PolicyId" (optional.String) -
+ * @param "Detail" (optional.Bool) -
+ * @param "History" (optional.Bool) -
+ * @param "Interactive" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return []map[string]interface{}
 */
@@ -1433,7 +1389,7 @@ func (a *ImagesApiService) GetImagePolicyCheck(ctx _context.Context, imageDigest
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/check"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1517,14 +1473,6 @@ func (a *ImagesApiService) GetImagePolicyCheck(ctx _context.Context, imageDigest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetImagePolicyCheckByImageIdOpts Optional parameters for the method 'GetImagePolicyCheckByImageId'
-type GetImagePolicyCheckByImageIdOpts struct {
-    PolicyId optional.String
-    Detail optional.Bool
-    History optional.Bool
-    XAnchoreAccount optional.String
-}
-
 /*
 GetImagePolicyCheckByImageId Check policy evaluation status for image
 Get the policy evaluation for the given image
@@ -1532,9 +1480,9 @@ Get the policy evaluation for the given image
  * @param imageId
  * @param tag
  * @param optional nil or *GetImagePolicyCheckByImageIdOpts - Optional Parameters:
- * @param "PolicyId" (optional.String) - 
- * @param "Detail" (optional.Bool) - 
- * @param "History" (optional.Bool) - 
+ * @param "PolicyId" (optional.String) -
+ * @param "Detail" (optional.Bool) -
+ * @param "History" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return []map[string]interface{}
 */
@@ -1550,7 +1498,7 @@ func (a *ImagesApiService) GetImagePolicyCheckByImageId(ctx _context.Context, im
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}/check"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1631,21 +1579,14 @@ func (a *ImagesApiService) GetImagePolicyCheckByImageId(ctx _context.Context, im
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetImageVulnerabilitiesByTypeOpts Optional parameters for the method 'GetImageVulnerabilitiesByType'
-type GetImageVulnerabilitiesByTypeOpts struct {
-    ForceRefresh optional.Bool
-    VendorOnly optional.Bool
-    XAnchoreAccount optional.String
-}
-
 /*
 GetImageVulnerabilitiesByType Get vulnerabilities by type
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param imageDigest
  * @param vtype
  * @param optional nil or *GetImageVulnerabilitiesByTypeOpts - Optional Parameters:
- * @param "ForceRefresh" (optional.Bool) - 
- * @param "VendorOnly" (optional.Bool) - 
+ * @param "ForceRefresh" (optional.Bool) -
+ * @param "VendorOnly" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return VulnerabilityResponse
 */
@@ -1661,9 +1602,9 @@ func (a *ImagesApiService) GetImageVulnerabilitiesByType(ctx _context.Context, i
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/vuln/{vtype}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"vtype"+"}", _neturl.QueryEscape(parameterToString(vtype, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vtype"+"}", _neturl.QueryEscape(parameterToString(vtype, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1740,11 +1681,6 @@ func (a *ImagesApiService) GetImageVulnerabilitiesByType(ctx _context.Context, i
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetImageVulnerabilitiesByTypeImageIdOpts Optional parameters for the method 'GetImageVulnerabilitiesByTypeImageId'
-type GetImageVulnerabilitiesByTypeImageIdOpts struct {
-    XAnchoreAccount optional.String
-}
-
 /*
 GetImageVulnerabilitiesByTypeImageId Get vulnerabilities by type
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1766,9 +1702,9 @@ func (a *ImagesApiService) GetImageVulnerabilitiesByTypeImageId(ctx _context.Con
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}/vuln/{vtype}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")), -1)
 
-	localVarPath = strings.Replace(localVarPath, "{"+"vtype"+"}", _neturl.QueryEscape(parameterToString(vtype, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vtype"+"}", _neturl.QueryEscape(parameterToString(vtype, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1837,11 +1773,6 @@ func (a *ImagesApiService) GetImageVulnerabilitiesByTypeImageId(ctx _context.Con
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageVulnerabilityTypesOpts Optional parameters for the method 'GetImageVulnerabilityTypes'
-type GetImageVulnerabilityTypesOpts struct {
-    XAnchoreAccount optional.String
 }
 
 /*
@@ -1864,7 +1795,7 @@ func (a *ImagesApiService) GetImageVulnerabilityTypes(ctx _context.Context, imag
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/vuln"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1933,11 +1864,6 @@ func (a *ImagesApiService) GetImageVulnerabilityTypes(ctx _context.Context, imag
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageVulnerabilityTypesByImageIdOpts Optional parameters for the method 'GetImageVulnerabilityTypesByImageId'
-type GetImageVulnerabilityTypesByImageIdOpts struct {
-    XAnchoreAccount optional.String
 }
 
 /*
@@ -1960,7 +1886,7 @@ func (a *ImagesApiService) GetImageVulnerabilityTypesByImageId(ctx _context.Cont
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}/vuln"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2029,11 +1955,6 @@ func (a *ImagesApiService) GetImageVulnerabilityTypesByImageId(ctx _context.Cont
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// ListImageContentOpts Optional parameters for the method 'ListImageContent'
-type ListImageContentOpts struct {
-    XAnchoreAccount optional.String
 }
 
 /*
@@ -2056,7 +1977,7 @@ func (a *ImagesApiService) ListImageContent(ctx _context.Context, imageDigest st
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/content"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2127,11 +2048,6 @@ func (a *ImagesApiService) ListImageContent(ctx _context.Context, imageDigest st
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListImageContentByImageidOpts Optional parameters for the method 'ListImageContentByImageid'
-type ListImageContentByImageidOpts struct {
-    XAnchoreAccount optional.String
-}
-
 /*
 ListImageContentByImageid List image content types
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2152,7 +2068,7 @@ func (a *ImagesApiService) ListImageContentByImageid(ctx _context.Context, image
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}/content"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2225,7 +2141,7 @@ func (a *ImagesApiService) ListImageContentByImageid(ctx _context.Context, image
 
 // ListImageMetadataOpts Optional parameters for the method 'ListImageMetadata'
 type ListImageMetadataOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -2248,7 +2164,7 @@ func (a *ImagesApiService) ListImageMetadata(ctx _context.Context, imageDigest s
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/metadata"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2321,11 +2237,11 @@ func (a *ImagesApiService) ListImageMetadata(ctx _context.Context, imageDigest s
 
 // ListImagesOpts Optional parameters for the method 'ListImages'
 type ListImagesOpts struct {
-    History optional.Bool
-    Fulltag optional.String
-    ImageStatus optional.String
-    AnalysisStatus optional.String
-    XAnchoreAccount optional.String
+	History         optional.Bool
+	Fulltag         optional.String
+	ImageStatus     optional.String
+	AnalysisStatus  optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
